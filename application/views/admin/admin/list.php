@@ -10,6 +10,7 @@
                 <th>User Name</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Unit</th>
                 <th width="100">Status</th>
                 <th width="120">Action</th>
             </tr>
@@ -32,6 +33,9 @@
                 </td>
                 <td>
                     <button class="btn btn-xs btn-success"><?=$row['admin_role_title']?></button>
+                </td> 
+                <td>
+                <?=$row['unit']?>
                 </td> 
                 <td><input class='tgl tgl-ios tgl_checkbox' 
                     data-id="<?=$row['admin_id']?>" 

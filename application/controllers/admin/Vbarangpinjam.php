@@ -15,6 +15,8 @@
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('tablestrap');
 		$crud->set_table('tblpeminjaman');
+		$unit = $this->session->userdata('admin_unit');
+		$crud->where('tblpeminjaman.unit',$unit);
 		$crud->set_subject('Peminjaman Barang');
 		
 		$crud->where('tglkembali');

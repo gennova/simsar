@@ -154,12 +154,18 @@
 			$ambilthn=date('Y', strtotime($post_array['tglmasuk']));
 						
             $kode_terakhir = $this->admin->getMax('tblbarang', 'nourut');
-            $kode_tambah = substr($kode_terakhir, -6, 6);
+			echo "<script>console.log('view data last ".$kode_terakhir."');</script>";
+            $kode_tambah = substr($kode_terakhir, -10,10);
             $kode_tambah++;
-            $number = str_pad($kode_tambah, 6, '0', STR_PAD_LEFT);
+            $number = str_pad($kode_tambah, 10, '0', STR_PAD_LEFT);
+			$datem = $post_array['tglmasuk'];
+			if(!isset($datem) || trim($datem) == '') {
+				$datem='01/01/1970';
+			}
+			$datem=str_replace('/','',$datem);
 			$post_array['kdprefix'] = ($ambilkat . '-' . $ambilsubkat . '-' . $ambilunit . '-' . $ambilkodesumberdana) . '-';
 			$post_array['nourut'] = ($number);
-			$post_array['kdbarang'] = ($ambilkat . '-' . $ambilsubkat . '-' . $ambilunit  . '-' . $ambilkodesumberdana . '-' . $number);
+			$post_array['kdbarang'] = ($ambilkat . '-' . $ambilsubkat . '-' . $ambilunit  . '-' . $ambilkodesumberdana . '-' . $number . '-' .$datem);
 			$post_array['thnmasuk'] = $ambilthn;
 			
 			return $post_array;

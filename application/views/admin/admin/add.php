@@ -73,7 +73,18 @@
                   <input type="password" name="password" class="form-control" id="password" placeholder="">
                 </div>
               </div>
-        
+              <div class="form-group">
+                <label for="unit" class="col-sm-2 control-label">UNIT</label>
+
+                <div class="col-sm-9">
+                  <select name="unit" class="form-control">
+                    <option value="">Select Unit</option>
+                    <?php foreach($unit_ypii as $unit): ?>
+                      <option value="<?= $unit['unitcode']; ?>"><?= $unit['unitcode']; ?></option>                      
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
               <div class="form-group">
                 <label for="role" class="col-sm-2 control-label">Select Admin Role*</label>
 

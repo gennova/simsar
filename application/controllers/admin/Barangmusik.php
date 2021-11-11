@@ -13,9 +13,11 @@
 	
 	public function index()
 	{
+		$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('datatables');
 		$crud->set_table('tblbarang');
+		$crud->where('tblbarang.unit',$unit);
 		$crud->set_subject('Data Barang');
 		
 		$crud->where('tblbarang.kdkategori','D');

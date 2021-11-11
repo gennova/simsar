@@ -29,6 +29,13 @@ class Admin_model extends CI_Model{
 		return $query->result_array();
 	}
 
+	function get_admin_unit()
+	{
+		$this->db->from('unitypii');
+		$query=$this->db->get();
+		return $query->result_array();
+	}
+
 	//-----------------------------------------------------
 	function get_admin_by_id($id)
 	{

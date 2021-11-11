@@ -52,6 +52,7 @@ class Admin extends CI_Controller
 		$this->rbac->check_operation_access(); // check opration permission
 
 		$data['admin_roles']=$this->admin->get_admin_roles();
+		$data['unit_ypii']=$this->admin->get_admin_unit();
 
 		if($this->input->post('submit')){
 				$this->form_validation->set_rules('username', 'Username', 'trim|required');
