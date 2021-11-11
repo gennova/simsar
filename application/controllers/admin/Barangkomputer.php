@@ -15,10 +15,12 @@
 	{
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('datatables');
-		$crud->where('idjenis','46','47');
-		$crud->or_where('idjenis','47');
-		$crud->or_where('idjenis','131');
-		$crud->or_where('idjenis','237');
+		$where = "unit='smg' AND idjenis in ('46','47','131','237')";
+		$crud->where($where);
+		//$crud->where('idjenis','46','47');
+		//$crud->or_where('idjenis','47');
+		//$crud->or_where('idjenis','131');
+		//$crud->or_where('idjenis','237');
 
 		$crud->set_table('tblbarang');
 		$crud->set_subject('Data Spesifikasi Komputer');

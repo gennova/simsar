@@ -61,6 +61,7 @@ class Admin extends CI_Controller
 				$this->form_validation->set_rules('mobile_no', 'Number', 'trim|required');
 				$this->form_validation->set_rules('password', 'Password', 'trim|required');
 				$this->form_validation->set_rules('role', 'Role', 'trim|required');
+				$this->form_validation->set_rules('unit', 'Unit', 'trim|required');
 
 				if ($this->form_validation->run() == FALSE) {
 					$data['view'] = 'admin/admin/add';
@@ -78,6 +79,7 @@ class Admin extends CI_Controller
 						'is_active' => 1,
 						'created_at' => date('Y-m-d : h:m:s'),
 						'updated_at' => date('Y-m-d : h:m:s'),
+						'unit' => $this->input->post('unit'),
 					);
 					$data = $this->security->xss_clean($data);
 					$result = $this->admin->add_admin($data);

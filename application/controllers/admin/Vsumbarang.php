@@ -15,9 +15,11 @@
 
 	public function index()
 	{		
+		$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('tablestrap');
 		$crud->set_table('vsumbarang');
+		$crud->where('unit',$unit);
 		$crud->set_primary_key('Jenis');
 		//$crud->unset_operations();
 		$crud->unset_add();

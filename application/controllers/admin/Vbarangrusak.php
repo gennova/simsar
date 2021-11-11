@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Vbarangrusak extends MY_Controller {
-
+	
 	public function __construct()
 	{
 		parent::__construct();
@@ -15,9 +15,11 @@
 
 	public function index()
 	{		
+		$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('tablestrap');
 		$crud->set_table('vbarangrusak');
+		$crud->where('vbarangrusak.unit',$unit);
 		$crud->set_primary_key('idbarang');
 		//$crud->unset_operations();
 		$crud->unset_add();

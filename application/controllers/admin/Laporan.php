@@ -55,6 +55,7 @@ class Laporan extends CI_Controller {
    
    	function cetakperkategori()
 	{
+		$unit = $this->session->userdata('admin_unit');
 		$idunik=$_GET['id'];
 		$this->load->library('database_library');
 		$this->database_library->pake_table('tblbarang');
@@ -67,7 +68,7 @@ class Laporan extends CI_Controller {
 			
 		$select="tblbarang.kdkategori AS id, tblbarang.kdbarang AS kdbarang, tblbarang.namabarang as namabarang, tbllokasi.namalokasi as namalokasi, tblbarang.tglmasuk as tglmasuk, tblbarang.harga as harga, tblsumberdana.nmsumberdana as sumberdana";			
 		$from=("(tblbarang INNER JOIN tblkategori ON tblbarang.kdkategori = tblkategori.kdkategori INNER JOIN tbllokasi ON tblbarang.kdlokasi=tbllokasi.kdlokasi INNER JOIN tblsumberdana ON tblbarang.kdsumberdana=tblsumberdana.kdsumberdana)");
-		$where="tblbarang.kdkategori='".$idunik."' ORDER BY tblbarang.kdbarang ASC";		
+		$where="tblbarang.kdkategori='".$idunik."' and tblbarang.unit='".$unit."' ORDER BY tblbarang.kdbarang ASC";		
 		$data['isdata']=$this->database_library->ambil_data_where_custom($select,$from,$where);
 		
 		//$paket = $this->input->post('kdlokasi');
@@ -174,6 +175,7 @@ class Laporan extends CI_Controller {
 	
 	function cetakperolehan()
 	{
+		$unit = $this->session->userdata('admin_unit');
 		$idunik=$_GET['id'];
 		$this->load->library('database_library');
 		$this->database_library->pake_table('tblbarang');
@@ -184,7 +186,7 @@ class Laporan extends CI_Controller {
 			
 		$select="*";			
 		$from=("tblbarang");
-		$where="YEAR(tglmasuk)='".$idunik."' AND tglmasuk != 'NULL' AND harga != 'NULL'";		
+		$where="YEAR(tglmasuk)='".$idunik."' and tblbarang.unit='".$unit."' AND tglmasuk != 'NULL' AND harga != 'NULL'";		
 		$data['isdata']=$this->database_library->ambil_data_where_custom($select,$from,$where);
 		
 		//$paket = $this->input->post('kdlokasi');

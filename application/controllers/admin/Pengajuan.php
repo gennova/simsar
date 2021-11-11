@@ -13,9 +13,11 @@
 	
 	public function index()
 	{
+		$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('tablestrap');
 		$crud->set_table('tblpengajuan');
+		$crud->where('unit',$unit);
 		$crud->set_subject('Pengajuan Pembelian Barang');
 		
 		//$crud->set_clone();
@@ -67,14 +69,19 @@
 						 
 					}
 		
-		$crud->add_fields('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan');
-		$crud->edit_fields('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan');
+		$crud->add_fields('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan','unit');
+		$crud->edit_fields('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan','unit');
 		//$crud->change_field_type('nopinjam','hidden');
-		
+		$crud->callback_add_field('unit',array($this,'getUnit'));
 		$output = $crud->render();
 		$this->_example_output($output);        
 	}
  
+	function getUnit()
+	{
+		$d=$this->session->userdata('admin_unit');;
+		return '<input type="text" maxlength="50" value="'.$d.'" name="unit" style="width:462px">';
+	}
 	function _example_output($output = null){
 		$this->load->view('admin/transaksi/vpengajuan',$output);	
 	}
