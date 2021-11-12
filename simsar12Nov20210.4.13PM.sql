@@ -38,7 +38,7 @@ CREATE TABLE `ci_admin` (
   `token` varchar(255) NOT NULL,
   `password_reset_code` varchar(255) NOT NULL,
   `last_ip` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `unit` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
