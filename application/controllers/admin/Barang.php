@@ -56,7 +56,7 @@
 		$crud->set_relation('idjenis','tbljenis','namajenis');
 		$crud->set_relation('kdsumberdana','tblsumberdana','nmsumberdana');
 		//$crud->set_relation('idunit','tblunit','namaunit');
-		$crud->set_relation('kdlokasi','tbllokasi','namalokasi');
+		$crud->set_relation('kdlokasi','tbllokasi','namalokasi',['unit = ' => $unit]);
 		$crud->set_relation('idkondisi','tblkondisi','namakondisi');
 		
 		
