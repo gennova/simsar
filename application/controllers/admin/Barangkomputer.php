@@ -13,12 +13,16 @@
 	
 	public function index()
 	{
+		$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('datatables');
-		$where = "unit='smg' AND idjenis in ('46','47','131','237')";
-		$crud->where($where);
-		//$crud->where('idjenis','46','47');
-		//$crud->or_where('idjenis','47');
+		//$where = "tblbarang.unit=$unit AND idjenis in ('46','47','131','237')";
+		//$crud->where($where);
+		$crud->where('tblbarang.unit',$unit);
+		//$crud->where('idjenis IN('46')');
+		//$crud->where('profileId IN('.implode(",",$ids).')',null,false);
+		$crud->where('idjenis IN('.implode(",",['46','47','131','237']).')',null,false);
+		//$crud->where('idjenis','47');
 		//$crud->or_where('idjenis','131');
 		//$crud->or_where('idjenis','237');
 

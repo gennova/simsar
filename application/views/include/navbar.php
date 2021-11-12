@@ -35,14 +35,14 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?= base_url() ?>public/dist/img/download.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?= ucwords($this->session->userdata('username')); ?></span>
+              <span class="hidden-xs"><?= $this->session->userdata('firstname'); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="<?= base_url() ?>public/dist/img/download.png" class="img-circle" alt="User Image">
                 <?php
-                echo $this->session->userdata('admin_unit'); ?> 
+                //echo $this->session->userdata('admin_unit'); ?> 
                 <p>
                   SIMSARPRAS
                 </p>
@@ -55,7 +55,7 @@
                   <a href="<?= site_url('auth/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
                 <div class="pull-left">
-                  <a href="<?= site_url('admin/profile'); ?>" class="btn btn-default btn-flat">profile</a>
+                  <a href="<?= site_url('admin/profile'); ?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
               </li>
             </ul>

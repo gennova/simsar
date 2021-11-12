@@ -16,7 +16,7 @@
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('tablestrap');
 		$crud->set_table('tblpeminjaman');
-		$crud->where('unitid',$unit);
+		$crud->where('tblpeminjaman.unit',$unit);
 		$crud->set_subject('Peminjaman Barang');
 		
 		//$crud->set_clone();
@@ -29,22 +29,22 @@
         $crud->display_as('nopinjam','No Peminjaman');
 		$crud->display_as('tglpinjam','Tgl PInjam');
 		$crud->display_as('kdbarang','Kode Barang');
-		$crud->display_as('unit','Pemilik Barang');
 		$crud->display_as('nmpeminjam','PIC Peminjam');
 		$crud->display_as('unitpeminjam','Unit peminjam');
 		$crud->display_as('acara','Untuk Acara');
 		$crud->display_as('tglkembali','Tgl Kembali');
 		$crud->display_as('keterangan','Keterangan');	
+		$crud->change_field_type('unit','hidden');
 		//remove array if without clause statement
 		$crud->set_relation('kdbarang','tblbarang','{kdbarang} - {namabarang}',array('unit'=> $unit));	
 		$crud->unset_clone();
 		//$crud->unique_fields(array('nopinjam'));
 		
-		$crud->required_fields(array('tglpinjam','kdbarang','unit','nmpeminjam','unitpeminjam','acara','unitid'));		
-		$crud->add_fields('tglpinjam','kdbarang','unit','nmpeminjam','unitpeminjam','acara','tglkembali','keterangan','unitid');
-		$crud->edit_fields('tglpinjam','kdbarang','nmpeminjam','unitpeminjam','acara','tglkembali','keterangan','unitid');
+		$crud->required_fields(array('tglpinjam','kdbarang','nmpeminjam','unitpeminjam','acara'));		
+		$crud->add_fields('tglpinjam','kdbarang','unit','nmpeminjam','unitpeminjam','acara','tglkembali','keterangan');
+		$crud->edit_fields('tglpinjam','kdbarang','nmpeminjam','unitpeminjam','acara','tglkembali','keterangan');
 		//$crud->change_field_type('nopinjam','hidden');
-		$crud->callback_add_field('unitid',array($this,'add_field_callback_1'));
+		$crud->callback_add_field('unit',array($this,'add_field_callback_1'));
 		$output = $crud->render();
 		$this->_example_output($output);        
 	}
@@ -52,7 +52,7 @@
 	function add_field_callback_1()
 	{
 		$d=$this->session->userdata('admin_unit');;
-		return '<input type="text" maxlength="50" value="'.$d.'" name="unitid" style="width:462px">';
+		return '<input type="hidden" maxlength="50" value="'.$d.'" name="unit" style="width:462px">';
 	}
 	function _example_output($output = null){
 		$this->load->view('admin/transaksi/vpeminjaman',$output);	

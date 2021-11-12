@@ -46,9 +46,9 @@
 	{
 		    // Mengenerate Kode Lokasi		
             $kode_terakhir = $this->admin->getMax('tbllokasi', 'kdlokasi');
-            $kode_tambah = substr($kode_terakhir, -3, 3);
+            $kode_tambah = substr($kode_terakhir, -5, 5);
             $kode_tambah++;
-            $number = str_pad($kode_tambah, 3, '0', STR_PAD_LEFT);
+            $number = str_pad($kode_tambah, 5, '0', STR_PAD_LEFT);
             //$data['kdbarang'] = 'B' . $number;
 			$post_array['kdlokasi']= 'R-' . $number;
 			//$post_array['kdlokasi'] = ($number);

@@ -78,6 +78,22 @@
                   </select>
                 </div>
               </div>
+              <div class="form-group">
+                <label for="unit" class="col-sm-2 control-label">Unit</label>
+
+                <div class="col-sm-9">
+                  <select name="unit" class="form-control">
+                    <option value="">Select Unit</option>
+                    <?php foreach($unit_ypii as $unit): ?>
+                      <?php if($unit['unitcode'] == $admin['unit']): ?>
+                      <option value="<?= $unit['unitcode']; ?>" selected><?= $unit['unitname']; ?></option>
+                      <?php else: ?>
+                      <option value="<?= $unit['unitcode']; ?>"><?= $unit['unitname']; ?></option>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>              
              <div class="form-group">
                 <label for="role" class="col-sm-2 control-label">Select Admin Role*</label>
 

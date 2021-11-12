@@ -103,6 +103,7 @@ class Admin extends CI_Controller
 		$this->rbac->check_operation_access(); // check opration permission
 
 		$data['admin_roles'] = $this->admin->get_admin_roles();
+		$data['unit_ypii']=$this->admin->get_admin_unit();
 
 		if($this->input->post('submit')){
 			$this->form_validation->set_rules('username', 'Username', 'trim|required');
@@ -111,6 +112,7 @@ class Admin extends CI_Controller
 			$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
 			$this->form_validation->set_rules('mobile_no', 'Number', 'trim|required');
 			$this->form_validation->set_rules('role', 'Role', 'trim|required');
+			$this->form_validation->set_rules('unit', 'Unit', 'trim|required');
 
 			if ($this->form_validation->run() == FALSE) {
 				$data['admin'] = $this->admin->get_admin_by_id($id);
@@ -120,6 +122,7 @@ class Admin extends CI_Controller
 			else{
 				$data = array(
 					'admin_role_id' => $this->input->post('role'),
+					'unit' => $this->input->post('unit'),
 					'username' => $this->input->post('username'),
 					'firstname' => $this->input->post('firstname'),
 					'lastname' => $this->input->post('lastname'),

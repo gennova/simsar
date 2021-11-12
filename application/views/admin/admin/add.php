@@ -80,7 +80,7 @@
                   <select name="unit" class="form-control">
                     <option value="">Select Unit</option>
                     <?php foreach($unit_ypii as $unit): ?>
-                      <option value="<?= $unit['unitcode']; ?>"><?= $unit['unitcode']; ?></option>                      
+                      <option value="<?= $unit['unitcode']; ?>"><?= $unit['unitname']; ?></option>                      
                     <?php endforeach; ?>
                   </select>
                 </div>

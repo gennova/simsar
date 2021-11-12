@@ -46,6 +46,8 @@ class Auth extends CI_Controller {
 						$admin_data = array(
 							'admin_id' => $result['admin_id'],
 							'username' => $result['username'],
+							'firstname' => $result['firstname'],
+							'lastname' => $result['lastname'],
 							'admin_unit' => $result['unit'],
 							'admin_role_id' => $result['admin_role_id'],
 							'admin_role' => $result['admin_role_title'],

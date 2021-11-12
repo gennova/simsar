@@ -30,13 +30,12 @@
 		$crud->unset_read();
 		
 		/**Menampilkan Kolom pada Grid View*/
-		$crud->columns('kdbarang','namabarang','idjenis','namaunit','kdlokasi','tglmasuk','idkondisi','kdsumberdana');	
+		$crud->columns('kdbarang','namabarang','idjenis','kdlokasi','tglmasuk','idkondisi','kdsumberdana');	
 		
 		// ================================ Form tabs
 		
 		/**Merubah Label Judul Field di tabel*/		
 		$crud->display_as('idjenis','Jenis Barang');
-		$crud->display_as('namaunit','Unit');
 		$crud->display_as('kdlokasi','Lokasi');
 		$crud->display_as('kdbarang','Kode Barang');
 		$crud->display_as('namabarang','Nama Barang');

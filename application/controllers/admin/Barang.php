@@ -16,7 +16,6 @@
 	{
 		$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
-		//$crud->set_theme('datatables');
 		$crud->set_table('tblbarang');
 		$crud->where('tblbarang.unit',$unit);
 		$crud->set_subject('Data Barang');
@@ -24,10 +23,6 @@
 		$crud->set_clone();
 		
 		$crud->callback_before_insert(array($this,'generate_kdbarang'));
-		//$crud->callback_before_insert(array($this,'generate_tahun'));
-		$crud->callback_before_update(array($this,'ubah_tahun'));
-		//$crud->callback_before_insert(array($this,'generate_tahun'));
-		//$crud->callback_after_insert(array($this, 'nama_otomatis'));
 
 		/**Menampilkan Kolom pada Grid View*/
 		$crud->columns('kdbarang','namabarang','idjenis','harga','kdlokasi','tglmasuk','idkondisi','kdsumberdana');	
@@ -39,7 +34,6 @@
 		/**Merubah Label Judul Field di tabel*/		
 		//$crud->set_add_value('unit', date("Y-m-d"));
 		$crud->display_as('idjenis','Jenis Barang');
-		$crud->display_as('namaunit','Unit');
 		$crud->display_as('kdlokasi','Lokasi');
 		$crud->display_as('kdbarang','Kode Barang');
 		$crud->display_as('namabarang','Nama Barang');
@@ -56,20 +50,21 @@
 		$crud->set_relation('idjenis','tbljenis','namajenis');
 		$crud->set_relation('kdsumberdana','tblsumberdana','nmsumberdana');
 		//$crud->set_relation('idunit','tblunit','namaunit');
-		$crud->set_relation('kdlokasi','tbllokasi','namalokasi');
+		$crud->set_relation('kdlokasi','tbllokasi','namalokasi',['unit = ' => $unit]);
 		$crud->set_relation('idkondisi','tblkondisi','namakondisi');
 		
 		
 		$crud->unique_fields(array('kdbarang'));	
-		$crud->required_fields('kdkategori','kdsubkategori','idjenis','namaunit','kdlokasi','kdsumberdana','namabarang','idkondisi','unit');		
-		$crud->add_fields('kdkategori','kdsubkategori','idjenis','namaunit','kdlokasi','kdsumberdana','kdprefix','nourut','kdbarang','namabarang','harga','tipe','serialnumber','tglmasuk','thnmasuk','invoice','idkondisi','keterangan','unit');	
-		$crud->edit_fields('kdkategori','kdsubkategori','idjenis','namaunit','kdlokasi','kdsumberdana','kdbarang','namabarang','harga','tipe','serialnumber','tglmasuk','thnmasuk','invoice','idkondisi','keterangan','unit');	
+		$crud->required_fields('kdkategori','kdsubkategori','idjenis','kdlokasi','kdsumberdana','namabarang','idkondisi','unit');		
+		$crud->add_fields('kdkategori','kdsubkategori','idjenis','kdlokasi','kdsumberdana','kdprefix','nourut','kdbarang','namabarang','harga','tipe','serialnumber','tglmasuk','invoice','idkondisi','keterangan','unit');	
+		$crud->edit_fields('kdkategori','kdsubkategori','idjenis','kdlokasi','kdsumberdana','kdbarang','namabarang','harga','tipe','serialnumber','tglmasuk','invoice','idkondisi','keterangan');	
 		$crud->unset_read_fields('motherboard','processor','tipedisk','sizedisk','tiperam','sizeram','namaos');
 		//$crud->readFields('kdkategori','kdsubkategori','idjenis','namaunit','kdlokasi','kdbarang','namabarang','tipe','serialnumber','tglmasuk','invoice','idkondisi','keterangan');
 			
 		$crud->change_field_type('kdprefix','hidden');
 		$crud->change_field_type('nourut','hidden');
 		$crud->change_field_type('thnmasuk','hidden');
+		$crud->change_field_type('unit','hidden');
 		$crud->order_by('idbarang','desc');
 		$crud->callback_add_field('unit',array($this,'add_field_callback_1'));
 		$this->load->library('gc_dependent_select');
@@ -121,27 +116,6 @@
 			$output->output.= $js;
  
 			$this->_example_output($output);        
-	}
- 
-	
-	function nama_otomatis($post_array)
-		{		
-			//$post_array['kdbarang'] = date('Y-m-d H:i:s');
-			//$post_array['tglmasuk'] = date('ym');
-			$ambilkat=$post_array['kdkategori'];
-			$ambilsubkat=$post_array['kdsubkategori'];
-			$ambilunit=$post_array['namaunit'];
-			$ambiltgl=date('yd', strtotime($post_array['tglmasuk']));
-			//$ambilwaktu=date('dmyHis');
-			$post_array['kdbarang'] = ($ambilkat . '-' . $ambilsubkat . '-' . $ambilunit . '-' . $ambiltgl);
-			return $post_array;
-		}
-		
-	function ubah_tahun($post_array)
-	{
-			$ambilthnubah=date('Y', strtotime($post_array['tglmasuk']));	
-			$post_array['thnmasuk'] = $ambilthnubah;
-			return $post_array;
 	}	
 	
 	function generate_kdbarang($post_array)
@@ -149,24 +123,25 @@
 		    // Mengenerate ID Barang
 			$ambilkat=$post_array['kdkategori'];
 			$ambilsubkat=$post_array['kdsubkategori'];
-			$ambilunit=$post_array['namaunit'];
+			$ambilunit=$post_array['unit'];
 			$ambilkodesumberdana=$post_array['kdsumberdana'];
-			$ambilthn=date('Y', strtotime($post_array['tglmasuk']));
+			//$ambilthn=date('Y', strtotime($post_array['tglmasuk']));
 						
             $kode_terakhir = $this->admin->getMax('tblbarang', 'nourut');
 			echo "<script>console.log('view data last ".$kode_terakhir."');</script>";
             $kode_tambah = substr($kode_terakhir, -10,10);
             $kode_tambah++;
             $number = str_pad($kode_tambah, 10, '0', STR_PAD_LEFT);
-			$datem = $post_array['tglmasuk'];
+			$tahun=str_replace('/','-',$post_array['tglmasuk']);
+			$datem = date('Y',strtotime($tahun));
 			if(!isset($datem) || trim($datem) == '') {
-				$datem='01/01/1970';
+				$datem='1970';
 			}
-			$datem=str_replace('/','',$datem);
+			
 			$post_array['kdprefix'] = ($ambilkat . '-' . $ambilsubkat . '-' . $ambilunit . '-' . $ambilkodesumberdana) . '-';
 			$post_array['nourut'] = ($number);
 			$post_array['kdbarang'] = ($ambilkat . '-' . $ambilsubkat . '-' . $ambilunit  . '-' . $ambilkodesumberdana . '-' . $number . '-' .$datem);
-			$post_array['thnmasuk'] = $ambilthn;
+			//$post_array['thnmasuk'] = $ambilthn;
 			
 			return $post_array;
 	}
@@ -184,7 +159,7 @@
 	function add_field_callback_1()
 	{
 		$d=$this->session->userdata('admin_unit');;
-		return '<input type="text" maxlength="50" value="'.$d.'" name="unit" style="width:462px">';
+		return '<input type="hidden" maxlength="50" value="'.$d.'" name="unit" style="width:462px">';
 	}
 
     private function set_barcode($code)
