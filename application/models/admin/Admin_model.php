@@ -106,6 +106,7 @@ function change_status()
 	function update_login_status($id,$ip)
 	{		
 		$this->db->set('last_ip',$ip);
+		$this->db->set('last_login',date_create()->format('Y-m-d H:i:s'));
 		$this->db->where('admin_id',$id);
 		$this->db->update('ci_admin');
 	} 
