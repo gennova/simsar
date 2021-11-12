@@ -103,6 +103,14 @@ function change_status()
 } 
 
 	//-----------------------------------------------------
+	function update_login_status($id,$ip)
+	{		
+		$this->db->set('last_ip',$ip);
+		$this->db->where('admin_id',$id);
+		$this->db->update('ci_admin');
+	} 
+
+	//-----------------------------------------------------
 function delete($id)
 {		
 	$this->db->where('admin_id',$id);

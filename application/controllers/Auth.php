@@ -5,6 +5,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		$this->load->library('mailer');
 		$this->load->model('auth_model', 'auth_model');
+		$this->load->model('admin/admin_model', 'admin_model');
 	}
 		//--------------------------------------------------------------
 	public function index(){
@@ -60,6 +61,7 @@ class Auth extends CI_Controller {
 							'is_admin_login' => TRUE
 						);
 						$this->session->set_userdata($admin_data);
+						$this->admin_model->update_login_status($result['admin_id'],file_get_contents('https://api.ipify.org'));
 							$this->rbac->set_access_in_session(); // set access in session
 							redirect(base_url('admin/dashboard'), 'refresh');
 						}
@@ -229,6 +231,32 @@ class Auth extends CI_Controller {
 		public function logout(){
 			$this->session->sess_destroy();
 			redirect(base_url('auth/login'), 'refresh');
+		}
+		function getUserIP()
+		{
+			// Get real visitor IP behind CloudFlare network
+			if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+					$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+					$_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+			}
+			$client  = @$_SERVER['HTTP_CLIENT_IP'];
+			$forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+			$remote  = $_SERVER['REMOTE_ADDR'];
+
+			if(filter_var($client, FILTER_VALIDATE_IP))
+			{
+				$ip = $client;
+			}
+			elseif(filter_var($forward, FILTER_VALIDATE_IP))
+			{
+				$ip = $forward;
+			}
+			else
+			{
+				$ip = $remote;
+			}
+
+			return $ip;
 		}
 
 	}  // end class
