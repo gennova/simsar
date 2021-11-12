@@ -11,7 +11,7 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">:: Aplikasi Pendataan Sarpras Sekolah YPII Bandung</h3>
+              <h3 class="box-title">:: Aplikasi Pendataan Sarpras <?php echo $this->session->userdata('admin_unit_name').' Alamat : '.$this->session->userdata('admin_unit_address'); ?></h3>
 
             </div>
             <!-- /.box-header -->

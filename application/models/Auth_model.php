@@ -6,6 +6,7 @@ class Auth_model extends CI_Model{
 
 		$this->db->from('ci_admin');
 		$this->db->join('ci_admin_roles','ci_admin_roles.admin_role_id = ci_admin.admin_role_id');
+		$this->db->join('unitypii','ci_admin.unit = unitypii.unitcode');
 		$this->db->where('ci_admin.username', $data['username']);
 
 		$query = $this->db->get();
