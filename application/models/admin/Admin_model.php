@@ -107,8 +107,12 @@ function change_status()
 	//-----------------------------------------------------
 	function update_login_status($id,$ip)
 	{		
+		$datetime = new DateTime();
+		$timezone = new DateTimeZone('Asia/Jakarta');
+		$datetime->setTimezone($timezone);
+		//echo $datetime->format('Y-m-d H:i:s');
 		$this->db->set('last_ip',$ip);
-		$this->db->set('last_login',date_create()->format('Y-m-d H:i:s'));
+		$this->db->set('last_login',$datetime->format('Y-m-d H:i:s'));
 		$this->db->where('admin_id',$id);
 		$this->db->update('ci_admin');
 	} 
