@@ -111,7 +111,7 @@
 			$crud->add_action('Generate Barcode', '', '','fa fa-barcode',array($this,'ca_barcode'));
 			//$crud->add_action('Generate Kode Barang', '', '','fa fa-trophy',array($this,'generate'));			
 			//Custom Action	
-					
+			log_message('INFO', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$this->session->userdata('username')." CRUD barang");		
 			$output = $crud->render();
 			$output->output.= $js;
  
@@ -179,6 +179,7 @@
 		$this->form_validation->set_rules('excel', 'File', 'trim|required');
 
 		if ($_FILES['excel']['name'] == '') {
+			log_message('ERROR', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$this->session->userdata('username')." File harus diisi");	
 			$this->session->set_flashdata('msg', 'File harus diisi');
 		} else {
 			$config['upload_path'] = './assets/excel/';
@@ -187,9 +188,11 @@
 			$this->load->library('upload', $config);
 			
 			if ( ! $this->upload->do_upload('excel')){
+				log_message('DEBUG', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$this->session->userdata('username')." Error upload");	
 				$error = array('error' => $this->upload->display_errors());
 			}
 			else{
+				log_message('INFO', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$this->session->userdata('username')." Import Data Excel Barang");	
 				$data = $this->upload->data();
 				
 				error_reporting(E_ALL);

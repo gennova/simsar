@@ -60,6 +60,7 @@ class Auth extends CI_Controller {
 							'admin_unit_phone' => $result['phone'],
 							'is_admin_login' => TRUE
 						);
+						log_message('INFO', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$result['username']." Login Success");
 						$this->session->set_userdata($admin_data);
 						$this->admin_model->update_login_status($result['admin_id'],file_get_contents('https://api.ipify.org'));
 							$this->rbac->set_access_in_session(); // set access in session
@@ -67,6 +68,7 @@ class Auth extends CI_Controller {
 						}
 					}
 					else{
+						log_message('ERROR', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$result['username']." Wrong password");
 						$this->session->set_flashdata('error', 'Invalid Username or Password!');
 						redirect(base_url('auth/login'));
 					}
