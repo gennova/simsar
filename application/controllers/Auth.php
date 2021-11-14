@@ -231,6 +231,7 @@ class Auth extends CI_Controller {
 		}
 
 		public function logout(){
+			log_message('ERROR', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$this->session->userdata('admin_unit')." logout");
 			$this->session->sess_destroy();
 			redirect(base_url('auth/login'), 'refresh');
 		}
