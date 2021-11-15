@@ -1,11 +1,11 @@
 <!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
 <style type="text/css">
 .myTable { background-color:white;border-collapse:collapse; font-family: Arial, Helvetica, sans-serif;}
-.myTable th { background-color:#F4D03F;color:black; }
+.myTable th { background-color:#B40404;color:white; }
 .myTable td, .myTable th { padding:5px;border:1px solid #000; font-size:10px; }
 
 .myTable2 { background-color:white; font-family: Arial, Helvetica, sans-serif;}
-.myTable2 th { background-color:#F4D03F;color:black; }
+.myTable2 th { background-color:#B40404;color:white; }
 .myTable2 td, .myTable2 th { padding:5px;border:0px solid #000; font-size:12px; }
 </style>
 <!-- End Styles -->
@@ -18,8 +18,12 @@ foreach($info as $rr)
 	<tr>
 		<td> <center><img src="<?php base_url() ?>public/dist/img/logo-header.png"> </center></td>
 		<td>Yayasan Penyelenggaraan Ilahi Indonesia<br>
-		Jln. Kebonjati No. 209<br>
-		Telp.(022) 6041960 | ypiibdg@ypiibandung.or.id | www.ypiibandung.or.id</td>
+		Unit <?php echo $this->session->userdata('admin_unit_name'); ?><br>
+		<?php echo $this->session->userdata('admin_unit_address'); ?><br>
+		Telepon : <?php echo $this->session->userdata('admin_unit_phone'); ?>
+		| Email : <?php echo $this->session->userdata('admin_unit_email'); ?>
+		| Website : <?php echo $this->session->userdata('admin_unit_website'); ?>
+		<td></td>
 	</tr>
 	</table>
 	<hr>
@@ -86,13 +90,14 @@ $i++;
 	  <br>
 	  <table border=0 width="100%">
 	  <tr>
-	  <td><center>Menyetujui, <br>Penanggungjawab YPII<br> Kantor Cabang Bandung<br><br><br><br><br></center></td>
-	  <td><center>Pemohon<br><br><br><br><br><br></center></td>
+	  <td><center>Menyetujui, <br>
+	  Pimpinan <?php echo $this->session->userdata('admin_unit_name'); ?><br><br><br><br><br></center></td>
+	  <td><center><br>Pemohon, <br>Koordinator Sarpras<br><br><br><br><br><br></center></td>
 	 
 	  </tr>
 	  <tr>
-	  <td width="50%"><center>( Sr. Priska Murwati, SDP., M.M )</center></td>
-	  <td width="50%"><center>( ___________________________ )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_pimpinan'); ?> )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_sarpra'); ?> )</center></td>
 	  </tr>
 	  </table>
 

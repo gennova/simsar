@@ -15,14 +15,17 @@
 
 	public function index()
 	{		
+		//$unit = $this->session->userdata('admin_unit');
 		$crud = new grocery_CRUD();
 		//$crud->set_theme('tablestrap');
 		$crud->set_table('vperkategori');
+		//$crud->where('unit',$unit);
 		$crud->set_primary_key('kdkategori');
 		$crud->unset_operations();
 		
 		$crud->display_as('kdkategori','Kode Kategori');
 		$crud->display_as('namakategori','Nama Kategori');
+
 		
 		$crud->add_action('Print', '', '','fa fa-print',array($this,'cetak'));
 		$crud->add_action('Lihat', '', '','fa fa-search',array($this,'laporan'));

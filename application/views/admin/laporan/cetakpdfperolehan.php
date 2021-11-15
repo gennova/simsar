@@ -1,11 +1,11 @@
 <!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
 <style type="text/css">
 .myTable { background-color:white;border-collapse:collapse; font-family: Arial, Helvetica, sans-serif;}
-.myTable th { background-color:#F4D03F;color:black; }
+.myTable th { background-color:#B40404;color:white; }
 .myTable td, .myTable th { padding:5px;border:1px solid #000; font-size:10px; }
 
 .myTable2 { background-color:white; font-family: Arial, Helvetica, sans-serif;}
-.myTable2 th { background-color:#F4D03F;color:black; }
+.myTable2 th { background-color:#B40404;color:white; }
 .myTable2 td, .myTable2 th { padding:5px;border:0px solid #000; font-size:12px; }
 </style>
 <!-- End Styles -->
@@ -19,6 +19,7 @@ foreach($info as $rr)
 	<td><center><img src="<?php base_url() ?>public/dist/img/download.png"  width="70" height="70" ></center></td>
 	<td><center>
 	DAFTAR PEROLEHAN BARANG INVENTARIS<br>
+	Unit <?php echo $this->session->userdata('admin_unit_name'); ?><br>
 	TAHUN : <strong><?php echo date('Y',strtotime($rr->tglmasuk));?></strong><br>
 	Tgl cetak : <?php echo date('d-F-Y');?>
 	</center></td>
@@ -51,7 +52,7 @@ foreach($isdata as $row)
 	echo '<td><center>'.$i."</center></td>";
 	echo '<td>'.$row->kdbarang."</div></td>";
 	echo '<td>'.$row->namabarang."</div></td>";
-	echo '<td><center>'.converttgl($row->tglmasuk)."</center></div></td>";
+	echo '<td><center>'.$row->tglmasuk."</center></div></td>";
 	echo '<td align="right">'.convertnominal($row->harga)."</div></td>";
 	echo '</tr>';
 $i++;	
@@ -64,13 +65,14 @@ $i++;
 	  <br>
 	  <table border=0 width="100%" class="myTable2">
 	  <tr>
-	  <td><center>Diperiksa, <br>Ketua Yayasan Cabang Bandung<br><br><br><br><br><br></center></td>
-	  <td><center>Penanggungjawab, <br>Koordinator Sarpras Yayasan<br><br><br><br><br><br></center></td>
+	  <td><center>Diperiksa, <br>
+	  Pimpinan <?php echo $this->session->userdata('admin_unit_name'); ?><br><br><br><br><br><br></center></td>
+	  <td><center>Penanggungjawab, <br>Koordinator Sarpras<br><br><br><br><br><br></center></td>
 	 
 	  </tr>
 	  <tr>
-	  <td width="50%"><center>( ______________________ )</center></td>
-	  <td width="50%"><center>( ______________________ )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_pimpinan'); ?> )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_sarpra'); ?> )</center></td>
 	  </tr>
 	  </table>
 	</body>

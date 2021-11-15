@@ -71,6 +71,7 @@ foreach($info as $rr)
 	<center>
 	<img src="<?= base_url() ?>public/dist/img/logo-header.png" class="img-circle" alt="User Image">
 	<h4>DAFTAR PEROLEHAN BARANG INVENTARIS<br>
+	Unit <?php echo $this->session->userdata('admin_unit_name'); ?><br>
 	TAHUN : <strong><?php echo date('Y',strtotime($rr->tglmasuk));?></strong><br>
 	Tgl cetak : <?php echo date('d-F-Y');?>
 	</h4></center> 				
@@ -122,13 +123,14 @@ $i++;
 	  <br>
 	  <table border=0 width="100%">
 	  <tr>
-	  <td><center>Diperiksa, <br>Ketua Yayasan Cabang Bandung<br><br><br><br><br><br></center></td>
-	  <td><center>Penanggungjawab, <br>Koordinator Sarpras Yayasan<br><br><br><br><br><br></center></td>
+	  <td><center>Diperiksa, <br>
+	  Pimpinan <?php echo $this->session->userdata('admin_unit_name'); ?><br><br><br><br><br><br></center></td>
+	  <td><center>Penanggungjawab, <br>Koordinator Sarpras<br><br><br><br><br><br></center></td>
 	 
 	  </tr>
 	  <tr>
-	  <td width="50%"><center>( ___________________________ )</center></td>
-	  <td width="50%"><center>( ___________________________ )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_pimpinan'); ?> )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_sarpra'); ?> )</center></td>
 	  </tr>
 	  </table>
     </div>			

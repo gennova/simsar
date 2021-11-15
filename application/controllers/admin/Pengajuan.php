@@ -28,13 +28,12 @@
 		//$crud->callback_column('jmlharga', array($this,'_total')); // add total to display columns
 		/**Merubah Label Judul Field di tabel*/
 		
-		$crud->columns('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga');
+		$crud->columns('nopengajuan','tglpengajuan','norab','namabarang','satuan','jmlbarang','hargasatuan','jmlharga');
 		
         $crud->display_as('idpengajuan','ID Pengajuan');
 		$crud->display_as('nopengajuan','No Pengajuan');
 		$crud->display_as('tglpengajuan','Tanggal');
 		$crud->display_as('norab','No RAB');
-		$crud->display_as('namaunit','Unit');
 		$crud->display_as('namabarang','Nama Barang');
 		$crud->display_as('satuan','Satuan');
 		$crud->display_as('jmlbarang','Jumlah');
@@ -69,9 +68,9 @@
 						 
 					}
 		
-		$crud->add_fields('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan','unit');
-		$crud->edit_fields('nopengajuan','tglpengajuan','norab','namaunit','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan','unit');
-		//$crud->change_field_type('nopinjam','hidden');
+		$crud->add_fields('nopengajuan','tglpengajuan','norab','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan','unit');
+		$crud->edit_fields('nopengajuan','tglpengajuan','norab','namabarang','satuan','jmlbarang','hargasatuan','jmlharga','keterangan','unit');
+		$crud->change_field_type('unit','hidden');
 		$crud->callback_add_field('unit',array($this,'getUnit'));
 		$output = $crud->render();
 		$this->_example_output($output);        
@@ -80,7 +79,7 @@
 	function getUnit()
 	{
 		$d=$this->session->userdata('admin_unit');;
-		return '<input type="text" maxlength="50" value="'.$d.'" name="unit" style="width:462px">';
+		return '<input type="hidden" maxlength="50" value="'.$d.'" name="unit" style="width:462px">';
 	}
 	function _example_output($output = null){
 		$this->load->view('admin/transaksi/vpengajuan',$output);	
@@ -89,12 +88,12 @@
 	function generate_nopengajuan($post_array)
 	{
 		    // Mengenerate No Pengajuan Barang
-			$ambilunit=$post_array['namaunit'];
+			$ambilunit=$post_array['unit'];
 
             $kode_terakhir = $this->admin->getMax('tblpengajuan', 'nopengajuan');
-            $kode_tambah = substr($kode_terakhir, -6, 6);
+            $kode_tambah = substr($kode_terakhir, -10, 10);
             $kode_tambah++;
-            $number = str_pad($kode_tambah, 6, '0', STR_PAD_LEFT);		
+            $number = str_pad($kode_tambah, 10, '0', STR_PAD_LEFT);		
 			$post_array['nopengajuan'] = ('PB' . '-' . $ambilunit . '-' . $number);
 			$post_array['jmlharga']=$post_array['jmlbarang']*$post_array['hargasatuan'];
 			return $post_array;

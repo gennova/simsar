@@ -116,8 +116,8 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
           </a>
           <ul class="treeview-menu">
             <li id="admin"><a href="<?= base_url('admin/vlokasi'); ?>"><i class="fa fa-circle-o"></i>Data per Ruangan</a></li>
-			<li id="admin"><a href="<?= base_url('admin/vperkategori'); ?>"><i class="fa fa-circle-o"></i>Data per Kategori</a></li>
-			<li id="admin"><a href="<?= base_url('admin/vsumbarang'); ?>"><i class="fa fa-circle-o"></i>Data Semua Barang</a></li>
+			<!--<li id="admin"><a href="<?= base_url('admin/vperkategori'); ?>"><i class="fa fa-circle-o"></i>Data per Kategori</a></li>-->
+			<!--<li id="admin"><a href="<?= base_url('admin/vsumbarang'); ?>"><i class="fa fa-circle-o"></i>Data Semua Barang</a></li>-->
 			<li id="admin"><a href="<?= base_url('admin/vbarangtahun'); ?>"><i class="fa fa-circle-o"></i>Data Perolehan</a></li>			
           </ul>
         </li>
@@ -153,9 +153,10 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
                 </span>
               </a>
               <ul class="treeview-menu">
+        <li class=""><a href="<?= base_url('admin/munitypii'); ?>"><i class="fa fa-circle-o"></i>Data Unit YPII</a></li>        
+        <li class=""><a href="<?= base_url('admin/mlokasi'); ?>"><i class="fa fa-circle-o"></i>Lokasi</a></li>               
 			  <li class=""><a href="<?= base_url('admin/mkondisi'); ?>"><i class="fa fa-circle-o"></i>Kondisi Barang</a></li>
 			  <li class=""><a href="<?= base_url('admin/msumberdana'); ?>"><i class="fa fa-circle-o"></i>Sumber Dana</a></li>
-			  <li class=""><a href="<?= base_url('admin/mlokasi'); ?>"><i class="fa fa-circle-o"></i>Lokasi</a></li>
 			  <li class=""><a href="<?= base_url('admin/mmotherboard'); ?>"><i class="fa fa-circle-o"></i>Motherboard</a></li>
 			  <li class=""><a href="<?= base_url('admin/mprocessor'); ?>"><i class="fa fa-circle-o"></i>Processor</a></li>
 			  <li class=""><a href="<?= base_url('admin/mos'); ?>"><i class="fa fa-circle-o"></i>OS</a></li>

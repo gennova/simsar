@@ -56,8 +56,10 @@ class Auth extends CI_Controller {
 							'admin_sarpra' => $result['sarpras'],
 							'admin_unit_name' => $result['unitname'],
 							'admin_unit_address' => $result['address'],
+							'admin_unit_kota' => $result['kota'],
 							'admin_unit_email' => $result['email'],
 							'admin_unit_phone' => $result['phone'],
+							'admin_unit_website' => $result['website'],
 							'is_admin_login' => TRUE
 						);
 						log_message('INFO', '------------------------------------ '.$this->router->fetch_class().'||'.$this->router->fetch_method().' - '.$result['username']." Login Success");

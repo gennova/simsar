@@ -73,8 +73,11 @@ foreach($info as $rr)
 	<tr>
 		<td> <center><img src="<?= base_url() ?>public/dist/img/logo-header.png" class="img-circle" alt="User Image"> </center></td>
 		<td>Yayasan Penyelenggaraan Ilahi Indonesia<br>
-		Jln. Kebonjati No. 209<br>
-		Telp.(022) 6041960 | ypiibdg@ypiibandung.or.id | www.ypiibandung.or.id</td>
+		Unit <?php echo $this->session->userdata('admin_unit_name'); ?><br>
+		<?php echo $this->session->userdata('admin_unit_address'); ?><br>
+		Telepon : <?php echo $this->session->userdata('admin_unit_phone'); ?>
+		| Email : <?php echo $this->session->userdata('admin_unit_email'); ?>
+		| Website : <?php echo $this->session->userdata('admin_unit_website'); ?>
 	</table>
 	<hr>
 
@@ -138,13 +141,14 @@ $i++;
 	  <br><br><br>
 	  <table border=0 width="100%">
 	  <tr>
-	  <td><center>Menyetujui, <br>Penanggungjawab YPII<br> Kantor Cabang Bandung<br><br><br><br><br></center></td>
-	  <td><center>Pemohon<br><br><br><br><br><br></center></td>
+	  <td><center>Menyetujui, <br>
+	  Pimpinan <?php echo $this->session->userdata('admin_unit_name'); ?><br><br><br><br><br></center></td>
+	  <td><br><center>Pemohon, <br>Koordinator Sarpras<br><br><br><br><br><br></center></td>
 	 
 	  </tr>
 	  <tr>
-	  <td width="50%"><center>( Sr. Priska Murwati, SDP., M.M )</center></td>
-	  <td width="50%"><center>( ___________________________ )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_pimpinan'); ?> )</center></td>
+	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_sarpra'); ?> )</center></td>
 	  </tr>
 	  </table>
     </div>			

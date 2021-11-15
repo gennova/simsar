@@ -22,12 +22,8 @@
 		  <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/skins/skin-purple.min.css">
 		  <!-- jQuery 2.2.3 -->
 		  <script src="<?= base_url() ?>public/plugins/jQuery/jquery-2.2.3.min.js"></script>
-		   
-		  <script src="<?= base_url() ?>public/formtab/form_tabs.js"></script>
-		  <!-- <link rel="stylesheet" href="<?= base_url() ?>public/formtab/form_tabs.css">-->
 		
 	</head>
-	
 	<body class="hold-transition skin-purple sidebar-mini">
 		<div class="wrapper" style="height: auto;">
 			<?php if($this->session->flashdata('msg') != ''): ?>
@@ -61,79 +57,45 @@
 							
 							  
  <section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-body">
+				<div class="col-md-6">
+					<h4><i class="fa fa-list"></i> &nbsp; Data Unit Sekolah YPII</h4>
+				</div>        
+			</div>
+		</div>
+	</div>
+
    <div class="box">
     <!-- /.box-header -->
     <div class="box-body table-responsive">
-
-<?php
-foreach($info as $rr)
-?>	
-	<center>
-	<img src="<?= base_url() ?>public/dist/img/logo-header.png" class="img-circle" alt="User Image">
-	<h4>DAFTAR BARANG INVENTARIS RUANGAN<br>
-	Unit <?php echo $this->session->userdata('admin_unit_name'); ?><br>
-	<?php echo "<strong> $rr->namalokasi </strong>" ?><br>
-	Luas Ruangan : <?php echo "<strong> $rr->luasruangan </strong>" ?><br>
-	Tgl cetak : <?php echo date('d-F-Y');?>
-	</h4></center> 				
-    
-	<div class="box-body table-responsive">
-      <table id="na_datatable" class="table table-bordered table-striped" width="100%">
-        <thead>
-        <tr>
-			<th width=5><center>NO</center></th>
-			<th><center>JENIS BARANG</center></th>
-			<th><center>JUMLAH</center></th>
-			<th><center>KONDISI</center></th>
-        </tr>
-        </thead>
-
-<?php
-$i=1;
-if(!empty($isdata))
-{
-foreach($isdata as $row)
-{
-	echo '<tr>';	
-	echo '<td><center>'.$i."</center></td>";
-	echo '<td>'.$row->jenis."</div></td>";
-	echo '<td><center>'.$row->jumlah."</center></div></td>";
-	echo '<td><center>'.$row->kondisi."</center></div></td>";
-	echo '</tr>';
-$i++;	
-}
-}else{
-	echo "KOSONG";
-}
-?>
-      </table>
-	  <br>
-	  <table border=0 width="100%">
-	  <tr>
-	  <td><center>Diperiksa, <br>
-	  Pimpinan <?php echo $this->session->userdata('admin_unit_name'); ?><br><br><br><br><br><br></center></td>
-	  <td><center>Penanggungjawab, <br>Koordinator Sarpras<br><br><br><br><br><br></center></td>
-	 
-	  </tr>
-	  <tr>
-	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_pimpinan'); ?> )</center></td>
-	  <td width="50%"><center>( <?php echo $this->session->userdata('admin_sarpra'); ?> )</center></td>
-	  </tr>
-	  </table>
-    </div>			
+		<?php 
+			foreach($css_files as $file): ?>
+				<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+		<?php endforeach; ?>	
 					
+		<?php echo $output; ?>
     </div>
-
+			<?php foreach($js_files as $file): ?>
+			<script src="<?php echo $file; ?>"></script>
+		<?php endforeach; ?>
     </div>	
     <!-- /.box-body -->
   <!-- /.box -->
 </section>
+  
+
 					
 						<!-- page end-->
 					</div>
 				</section>
 				<!--main content end-->
 				<!--footer start-->
+				<footer class="main-footer">
+					<strong>Copyright © 2020 <a href="http://www.ypiibandung.or.id">IT YPII Bandung</a></strong> All rights
+					reserved.
+				</footer>
 				<!--footer end-->
 			</section>
 
@@ -142,6 +104,12 @@ $i++;
 		</div>
 		
     
+	<!-- jQuery UI 1.11.4 -->
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+	  $.widget.bridge('uibutton', $.ui.button);
+	</script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="<?= base_url() ?>public/bootstrap/js/bootstrap.min.js"></script>
 	
@@ -156,5 +124,3 @@ $i++;
 
 	</body>
 </html>
-
-
