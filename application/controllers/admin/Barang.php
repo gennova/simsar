@@ -213,16 +213,16 @@
 							$resultData[$index]['kdkategori'] = $value['A'];
 							$resultData[$index]['kdsubkategori'] = $value['B'];
 							$resultData[$index]['idjenis'] = $value['C'];
-							$resultData[$index]['namaunit'] = $value['D'];
-							$resultData[$index]['kdlokasi'] = $value['E'];
-							$resultData[$index]['kdprefix'] = $value['F'];
-							$resultData[$index]['kdsumberdana'] = $value['G'];
-							$resultData[$index]['nourut'] = $value['H'];
-							$resultData[$index]['kdbarang'] = $value['I'];
-							$resultData[$index]['namabarang'] = ucwords($value['J']);
-							$resultData[$index]['harga'] = $value['K'];
-							$resultData[$index]['tglmasuk'] = $value['L'];
-							$resultData[$index]['idkondisi'] = $value['M'];
+							$resultData[$index]['kdlokasi'] = $value['D'];
+							$resultData[$index]['kdprefix'] = $value['E'];
+							$resultData[$index]['kdsumberdana'] = $value['F'];
+							$resultData[$index]['nourut'] = $value['G'];
+							$resultData[$index]['kdbarang'] = $value['H'];
+							$resultData[$index]['namabarang'] = ucwords($value['I']);
+							$resultData[$index]['harga'] = $value['J'];
+							$resultData[$index]['tglmasuk'] = $value['K'];
+							$resultData[$index]['idkondisi'] = $value['L'];
+							$resultData[$index]['unit'] = $value['M'];							
 						}
 					}
 					$index++;
