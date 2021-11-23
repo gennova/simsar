@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		  <title><?=isset($title)?$title:'SIMSAR v.1' ?></title>
+		  <title><?=isset($title)?$title:'SIMSAR v.2' ?></title>
 		  <!-- Tell the browser to be responsive to screen width -->
 		  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		  <meta name = "keywords" content = "Sistem Informasi Sarpras YPII Bandung" />
-      	  <meta name = "description" content = "Simsar V.1" />
-      	  <meta name = "author" content = "doubledee" />
+		  <meta name = "keywords" content = "SIM SARPRA YPII" />
+      	  <meta name = "description" content = "Simsar V.2" />
+      	  <meta name = "author" content = "itypii" />
 		  <!-- Bootstrap 3.3.6 -->
 		  <link rel="stylesheet" href="<?= base_url() ?>public/bootstrap/css/bootstrap.min.css">
 		  <!-- Font Awesome -->
@@ -19,12 +19,12 @@
 		  <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/style.css">		
 		  <!-- AdminLTE Skins. Choose a skin from the css/skins
 			   folder instead of downloading all of them to reduce the load. -->
-		  <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/skins/skin-purple.min.css">
+		  <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/skins/skin-red.min.css">
 		  <!-- jQuery 2.2.3 -->
 		  <script src="<?= base_url() ?>public/plugins/jQuery/jquery-2.2.3.min.js"></script>
 		
 	</head>
-	<body class="hold-transition skin-purple sidebar-mini">
+	<body class="hold-transition skin-red sidebar-mini">
 		<div class="wrapper" style="height: auto;">
 			<?php if($this->session->flashdata('msg') != ''): ?>
 			    <div class="alert alert-warning flash-msg alert-dismissible">

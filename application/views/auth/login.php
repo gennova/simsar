@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-          <title><?=isset($title)?$title:'Login - SIMSARPRAS' ?></title>
+          <title><?=isset($title)?$title:'SIM SARPRA YPII' ?></title>
           <!-- Tell the browser to be responsive to screen width -->
           <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
           <!-- Bootstrap 3.3.6 -->
@@ -45,8 +45,8 @@
                     <div class="form-box">
                         <div class="caption">
 						<img src="<?= base_url() ?>public/dist/img/logo-header.png" class="img-circle" alt="User Image">
-						<h4><span>SIMSARPRAS</span></h4>
-						<h5>YPII BANDUNG</h5>
+						<h4><span>SIM SARPRA YPII</span></h4>
+						<h5>Sistem Informasi Manajemen SARPRA</h5>
                         </div>
                         <?php echo form_open(base_url('auth/login'), 'class="login-form" '); ?>
                             <div class="input-group">
@@ -60,6 +60,7 @@
                                 <input type="submit" name="submit" id="submit" class="form-control" value="Login">
                                 <!--<p class="text-center"><a href="<?= base_url('auth/register'); ?>">Don't have an account? Sign Up</a></p>-->
                             </div>
+                            <h5><i>Proud To Be Michelisian</i></h5>
                         <?php echo form_close(); ?>
                     </div>
                 </div>

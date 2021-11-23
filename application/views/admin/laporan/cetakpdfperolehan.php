@@ -62,6 +62,18 @@ $i++;
 }
 ?>
       </table>
+	  
+	  <table id="na_datatable" class="table table-bordered table-striped" width="100%">
+<tr>
+	<td>
+		<div align=right><b>Jumlah Harga Perolehan : <?=convertrp($total);?></b></div>
+	</td>
+</tr>		
+</table>
+
+
+<br>
+      </table>
 	  <br>
 	  <table border=0 width="100%" class="myTable2">
 	  <tr>
